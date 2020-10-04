@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/HighTide/BierAanbieding/issues"
   },
-  "homepage": "https://github.com/HighTide/BierAanbieding#readme"
+  "homepage": "https://github.com/HighTide/BierAanbieding#readme",
+  "dependencies": {
+    "actions-on-google": "^2.13.0",
+    "dialogflow": "^1.2.0",
+    "dialogflow-fulfillment": "^0.6.1",
+    "firebase-admin": "^9.2.0",
+    "firebase-functions": "^3.11.0",
+    "jsdom": "^16.4.0"
+  }
 }
