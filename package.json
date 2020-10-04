@@ -1,0 +1,19 @@
+{
+  "name": "bier_aanbieding",
+  "version": "1.0.0",
+  "description": "This package will search webshops of dutch websites for the cheapest beer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HighTide/BierAanbieding.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HighTide/BierAanbieding/issues"
+  },
+  "homepage": "https://github.com/HighTide/BierAanbieding#readme"
+}
