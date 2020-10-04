@@ -10,9 +10,12 @@ const fetch = require('node-fetch');
 
 //intents
 const BEER_WHERE = 'Beer_Where';
+const SUPERMARKET_SALE = 'Supermarket_Sale'
 
 //entities
 const BEER_BRAND = 'Beer_Brand';
+const SUPERMARKTEN = 'Supermarkten'
+
 
 class Helper {
     constructor(conv) {
@@ -23,6 +26,25 @@ class Helper {
         return new Promise((resolve, reject) => {
             let answer = "";
             request.get('url' + brands, (error, response, body) => {
+                if (!error && response.statusCode === 200) {
+                    try {
+                        // Code to check price
+                    } catch (e) {
+                        answer = "Hmm, er is iets mis gegaan.";
+                        reject(answer)
+                    }
+                } else {
+                    answer = "Hmm, er is iets mis gegaan.";
+                    reject(answer)
+                }
+            });
+        });
+    }
+
+    supermarketSale(supermarket) {
+        return new Promise((resolve, reject) => {
+            let answer = "";
+            request.get('url' + supermarket, (error, response, body) => {
                 if (!error && response.statusCode === 200) {
                     try {
                         // Code to check price
@@ -54,6 +76,12 @@ app.intent(BEER_WHERE, async (conv) => {
     console.log(BEER_WHERE);
     const brands = conv.parameters[BEER_BRAND].toLowerCase();
     await conv.helper.getWhere(brands).then(message => conv.helper.sayMessage(message), error => console.log(error));
+});
+
+app.intent(SUPERMARKET_SALE, async (conv) => {
+    console.log(SUPERMARKET_SALE);
+    const supermarket = conv.parameters[SUPERMARKTEN].toLowerCase();
+    await conv.helper.supermarketSale(supermarket).then(message => conv.helper.sayMessage(message), error => console.log(error));
 });
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app);
