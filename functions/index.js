@@ -50,7 +50,7 @@ class Helper {
                         
 
                         const dom = new JSDOM(body);
-                        dom.window.document.querySelectorAll("#aanbiedingen_list > li:not(.vertical_aligned_blok):nth-child(1)").forEach((div) => {
+                        dom.window.document.querySelectorAll("#aanbiedingen_list > li:not(.vertical_aligned_blok)").forEach((div) => {
                             let name = div.querySelector("div.informatie > div > h3 > a").innerHTML
                             let oldPrice = div.querySelector("p > span.van_prijss")
                             let newPrice = div.querySelector("p > span.voor_prijss")
@@ -64,14 +64,13 @@ class Helper {
                             }
 
                             let store = div.querySelector("div.logo_image > a > img").alt
-                            let discount = div.querySelector("ul > li:nth-child(1) > i").innerHTML
+                            let discount = div.querySelector("ul > li > i").innerHTML
 
                             // Remove some unwated words from the alt text tag.
                             newPrice = newPrice.replace(" ", "");
                             store = store.replace("Logo", "");
                             parsedBeerList.push({ name, oldPrice, newPrice, store, discount })
                         });
-
                         answer = "Momenteel is er een aanbieding voor " + parsedBeerList[0].name + " bij de " + parsedBeerList[0].store + ". Van " + parsedBeerList[0].oldPrice + " voor " + parsedBeerList[0].newPrice + ".";
                         resolve(answer)
                     } catch (e) {
