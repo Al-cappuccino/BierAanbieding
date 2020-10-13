@@ -1,14 +1,7 @@
 const functions = require('firebase-functions');
-const { dialogflow } = require('actions-on-google');
 const fetch = require('node-fetch');
-//const request = require('request');
+const { dialogflow } = require('actions-on-google');
 const { JSDOM } = require('jsdom');
-
-
-
-// const tabletojson = require('tabletojson');
-// const jsdom = require("jsdom");
-// const {JSDOM} = jsdom;
 
 
 //intents
@@ -22,8 +15,6 @@ class Helper {
     constructor(conv) {
         this.conv = conv;
     }
-
-
 
     getCheap() {
         return new Promise((resolve, reject) => {
@@ -89,8 +80,6 @@ class Helper {
         });
     }
 
-
-
     getWhere(brands) {
 
         return new Promise((resolve, reject) => {
@@ -140,7 +129,6 @@ class Helper {
                     try {
                         let parsedBeerList = [];
 
-
                         const dom = new JSDOM(body);
                         dom.window.document.querySelectorAll("#aanbiedingen_list > li:not(.vertical_aligned_blok)").forEach((div) => {
                             let name = div.querySelector("div.informatie > div > h3 > a").innerHTML
@@ -161,6 +149,7 @@ class Helper {
                             // Remove some unwated words from the alt text tag.
                             newPrice = newPrice.replace(" ", "");
                             store = store.replace("Logo", "");
+                            
                             parsedBeerList.push({ name, oldPrice, newPrice, store, discount })
                         });
                         console.log(parsedBeerList)
